@@ -1,0 +1,73 @@
+<div class="animated fadeIn">
+	<div class="row">
+		<div class="col-md-6 mx-auto">
+			<div class="card">
+				<div class="card-header">
+
+					<span class="header-caption">Person Details</span>
+					<div [hidden]="!isLoading" class="spinner-border text-primary" role="status">
+						<span class="sr-only">Saving...</span>
+					</div>
+				</div>
+
+				<div class="card-body">
+					<app-display-alert></app-display-alert>
+
+
+
+
+					<form [formGroup]="editForm" (ngSubmit)="Save()" autocomplete="off">
+
+						<div class="form-group row">
+							<label class="col-md-3 col-form-label" for="FirstName">First Name</label>
+							<div class="col-md-9">
+								<input class="form-control" id="FirstName" type="text"
+									placeholder="enter first name (max 20 chars)" formControlName="FirstName"
+									[ngClass]="{'is-invalid': (editForm.get('FirstName').touched || editForm.get('FirstName').dirty) && !editForm.get('FirstName').valid }" />
+								<span class="invalid-feedback">
+									<span *ngIf="editForm.get('FirstName').errors?.required">
+										First Name Required.
+									</span>
+									<span *ngIf="editForm.get('FirstName').errors?.maxlength">
+										First Name must not be longer than 20 characters.
+									</span>
+								</span>
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<label class="col-md-3 col-form-label" for="LastName">Last Name</label>
+							<div class="col-md-9">
+								<input class="form-control" id="LastName" type="text"
+									placeholder="enter last name (max 20 chars)" formControlName="LastName"
+									[ngClass]="{'is-invalid': (editForm.get('LastName').touched || editForm.get('LastName').dirty) && !editForm.get('LastName').valid }" />
+								<span class="invalid-feedback">
+									<span *ngIf="editForm.get('LastName').errors?.required">
+										Last Name Required.
+									</span>
+									<span *ngIf="editForm.get('LastName').errors?.maxlength">
+										Last Name must not be longer than 20 characters.
+									</span>
+								</span>
+							</div>
+						</div>
+
+
+						<div class="form-group row">
+							<div class="col-md-12 text-center">
+								<button type="button" class="btn btn-success" [disabled]="!editForm.valid || isLoading"
+									(click)="Save()">Save</button>
+								<button type="button" class="btn btn-link" (click)="GoBack()">Go Back</button>
+							</div>
+						</div>
+
+
+
+					</form>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,8 @@
+<div [hidden]="!IsVisiible"
+  [ngClass]="{'alert-warning': alertType === 'Warning', 'alert-success' : alertType === 'Success' }"
+  class="alert alert-dismissible fade show" role="alert">
+  <strong>{{alertType}}</strong> {{msg}}
+  <button type="button" class="close" (click)="CloseAlert()" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
